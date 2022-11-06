@@ -24,30 +24,6 @@ import { isAuthenticated } from '../middlewares/auth';
 
 // Todas as rotas de Users
 const usersRoutes = Router();
-// usersRoutes.use(isAuthenticated);
-
-// Listagem
-usersRoutes.get('/', async (request, response) => {
-    const useCase = new ListUsersUseCase();
-    let users = await useCase.execute();
-    users = users.map((x) => {
-        delete x.password;
-        return x;
-    });
-    return response.send(users);
-});
-
-// Pesquisa
-usersRoutes.get('/:id', async (request, response) => {
-    const { id } = request.params;
-    const useCase = new GetUserUseCase();
-    const user = await useCase.execute(id);
-
-    if (!user) {
-        return response.status(404).send();
-    }
-    return response.send(user);
-});
 
 // Cadastro
 usersRoutes.post(
@@ -72,6 +48,31 @@ usersRoutes.post(
         return response.status(201).send(user);
     }
 );
+
+usersRoutes.use(isAuthenticated);
+
+// Listagem
+usersRoutes.get('/', async (request, response) => {
+    const useCase = new ListUsersUseCase();
+    let users = await useCase.execute();
+    users = users.map((x) => {
+        delete x.password;
+        return x;
+    });
+    return response.send(users);
+});
+
+// Pesquisa
+usersRoutes.get('/:id', async (request, response) => {
+    const { id } = request.params;
+    const useCase = new GetUserUseCase();
+    const user = await useCase.execute(id);
+
+    if (!user) {
+        return response.status(404).send();
+    }
+    return response.send(user);
+});
 
 // Edição
 usersRoutes.put('/:id', async (request, response) => {

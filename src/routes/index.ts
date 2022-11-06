@@ -41,6 +41,11 @@ const pessoas = [
 //     // });
 // });
 
+routes.use('/', (req, res) => {
+    res.json({
+        status: 'RUNNING',
+    });
+});
 routes.use('/auth', AuthRoutes);
 routes.use('/users', UsersRoutes);
 
