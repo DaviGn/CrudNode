@@ -19,7 +19,7 @@ const DbContext = new typeorm_1.DataSource({
     logging: false,
     entities: [User_1.default, Role_1.default],
     subscribers: [],
-    migrations: ['./src/migrations/*.ts'],
+    migrations: ['../migrations/*.ts'],
     migrationsTableName: 'migrations',
 });
 exports.default = DbContext;

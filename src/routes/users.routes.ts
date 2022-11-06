@@ -24,7 +24,7 @@ import { isAuthenticated } from '../middlewares/auth';
 
 // Todas as rotas de Users
 const usersRoutes = Router();
-usersRoutes.use(isAuthenticated);
+// usersRoutes.use(isAuthenticated);
 
 // Listagem
 usersRoutes.get('/', async (request, response) => {

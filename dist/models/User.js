@@ -16,6 +16,13 @@ const typeorm_1 = require("typeorm");
 const class_transformer_1 = require("class-transformer");
 const Role_1 = __importDefault(require("./Role"));
 let User = class User {
+    id;
+    name;
+    email;
+    password;
+    // Chave estrangeira
+    role;
+    roleid;
     getFotoUrl() {
         return `http://localhost:3333/img/users/${this.id}.png`;
     }

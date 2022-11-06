@@ -2,7 +2,6 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 require("express-async-errors");
@@ -16,7 +15,7 @@ const routes_1 = __importDefault(require("./routes"));
 const errors_1 = __importDefault(require("./middlewares/errors"));
 const context_1 = __importDefault(require("./db/context"));
 const Role_1 = __importDefault(require("./models/Role"));
-const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3333;
+const port = process.env.PORT ?? 3333;
 function runServer() {
     // Definir os middlewares
     const server = (0, express_1.default)();
@@ -33,12 +32,13 @@ function runServer() {
     server.use((0, celebrate_1.errors)());
     server.use(errors_1.default);
     server.listen(port, () => {
-        console.log('Server is running!');
+        console.log(`Server is running on port ${port}!`);
     });
 }
 // SEED
 context_1.default.initialize()
     .then((context) => {
+    console.log('Running migrations...');
     const adminRole = new Role_1.default();
     adminRole.id = '5be3f402-0c14-4ece-90a1-121bebae2a00';
     adminRole.name = 'Administrator';

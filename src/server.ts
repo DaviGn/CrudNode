@@ -33,13 +33,14 @@ function runServer() {
     server.use(errorsMiddleware);
 
     server.listen(port, () => {
-        console.log('Server is running!');
+        console.log(`Server is running on port ${port}!`);
     });
 }
 
 // SEED
 AppDataSource.initialize()
     .then((context) => {
+        console.log('Running migrations...');
         const adminRole = new Role();
         adminRole.id = '5be3f402-0c14-4ece-90a1-121bebae2a00';
         adminRole.name = 'Administrator';

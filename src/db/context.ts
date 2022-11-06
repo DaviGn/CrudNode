@@ -15,7 +15,7 @@ const DbContext = new DataSource({
     logging: false,
     entities: [User, Role],
     subscribers: [],
-    migrations: ['./src/migrations/*.ts'],
+    migrations: ['../migrations/*.ts'],
     migrationsTableName: 'migrations',
 });
 

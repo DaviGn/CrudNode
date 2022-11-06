@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class FieldException {
+    errors;
+    statusCode = 400;
     constructor(errors) {
-        this.statusCode = 400;
         this.errors = errors;
     }
 }
