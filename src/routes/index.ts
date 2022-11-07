@@ -5,6 +5,7 @@ import WelcomeEmailService from '../services/emailTemplates/welcomeEmail';
 import IEmailSender from '../services/iemailsender';
 import AuthRoutes from './auth.routes';
 import UsersRoutes from './users.routes';
+import RolesRoutes from './roles.routes';
 
 // Todas as rotas da nossa aplicação
 const routes = Router();
@@ -41,12 +42,13 @@ const pessoas = [
 //     // });
 // });
 
-routes.use('/', (req, res) => {
-    res.json({
+routes.get('/', (req, res) => {
+    return res.json({
         status: 'RUNNING',
     });
 });
 routes.use('/auth', AuthRoutes);
+routes.use('/roles', RolesRoutes);
 routes.use('/users', UsersRoutes);
 
 export default routes;
